@@ -5,6 +5,13 @@
  */
 package cdbank;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Casa
@@ -32,7 +39,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         depositarDinheiro = new javax.swing.JButton();
         sacarDinheiro = new javax.swing.JButton();
         trasferirDinheiro = new javax.swing.JButton();
-        saldoUsuario = new javax.swing.JTextField();
+        usuarioSaldo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela do Usuário");
@@ -67,11 +74,11 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
 
-        saldoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        saldoUsuario.setText("100");
-        saldoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        usuarioSaldo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        usuarioSaldo.setText("100");
+        usuarioSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saldoUsuarioActionPerformed(evt);
+                usuarioSaldoActionPerformed(evt);
             }
         });
 
@@ -88,17 +95,17 @@ public class TelaUsuario extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(depositarDinheiro)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(depositarDinheiro)
-                        .addGap(18, 18, 18)
-                        .addComponent(trasferirDinheiro))
+                        .addComponent(trasferirDinheiro)
+                        .addContainerGap(46, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saldoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(usuarioSaldo)
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,13 +114,13 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(saldoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(depositarDinheiro)
                     .addComponent(sacarDinheiro)
                     .addComponent(trasferirDinheiro))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,9 +148,9 @@ public class TelaUsuario extends javax.swing.JFrame {
          
     }//GEN-LAST:event_trasferirDinheiroActionPerformed
 
-    private void saldoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saldoUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saldoUsuarioActionPerformed
+    private void usuarioSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioSaldoActionPerformed
+
+    }//GEN-LAST:event_usuarioSaldoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +192,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton sacarDinheiro;
-    private javax.swing.JTextField saldoUsuario;
     private javax.swing.JButton trasferirDinheiro;
+    private javax.swing.JTextField usuarioSaldo;
     // End of variables declaration//GEN-END:variables
 }
