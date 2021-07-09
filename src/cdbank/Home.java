@@ -5,6 +5,14 @@
  */
 package cdbank;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Casa
@@ -121,20 +129,49 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
-        String usuarioId = usuarioConta.getText();
-        String senha = usuarioSenha.getText();
-        TelaError warning = new TelaError();
-        
-        int userId = Integer.parseInt(usuarioId);
-        int userSenha = Integer.parseInt(senha);
-        
-        if(userId == 94 && userSenha == 1234) {
-            TelaUsuario user01 = new TelaUsuario();
-            user01.setVisible(true);
-        } else {
-            warning.setVisible(true);
+        try {
+            // TODO add your handling code here
+            Connection conectando = ConexaoDb.conectar();
+            
+            String sql = "select * from usuario_cadastrado where conta =? and senha =?";
+            
+            PreparedStatement stmt = conectando.prepareStatement(sql);
+            
+            stmt.setString(1, usuarioConta.getText());
+            stmt.setString(2, usuarioSenha.getText());
+            
+            ResultSet resultado = stmt.executeQuery();
+            
+            if(resultado.next()) {
+                JOptionPane.showMessageDialog(null, "Seja Bem Vindo! Click em OK para continuar");
+                TelaUsuario user01 = new TelaUsuario();
+                user01.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário não encontrado. Verifique as informações.");
+                usuarioConta.setText("");
+                usuarioSenha.setText("");
+            }
+            
+            stmt.close();
+            conectando.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+//        String usuarioId = usuarioConta.getText();
+//        String senha = usuarioSenha.getText();
+//        TelaError warning = new TelaError();
+        
+//        int userId = Integer.parseInt(usuarioId);
+//        int userSenha = Integer.parseInt(senha);
+        
+//        if(userId == 94 && userSenha == 1234) {
+//            TelaUsuario user01 = new TelaUsuario();
+//            user01.setVisible(true);
+//        } else {
+//            warning.setVisible(true);
+//        }
 
     }//GEN-LAST:event_btnEntrarActionPerformed
 
