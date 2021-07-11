@@ -5,6 +5,9 @@
  */
 package cdbank;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Casa
@@ -16,6 +19,9 @@ public class Saque extends javax.swing.JFrame {
      */
     public Saque() {
         initComponents();
+        
+        Utils u = new Utils();
+        u.insertImage(this);
     }
 
     /**
@@ -62,7 +68,12 @@ public class Saque extends javax.swing.JFrame {
         });
 
         saldoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        saldoUsuario.setText("100");
+        saldoUsuario.setText("550");
+        saldoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saldoUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,8 +87,8 @@ public class Saque extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saldoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))
+                        .addComponent(saldoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -127,6 +138,7 @@ public class Saque extends javax.swing.JFrame {
         int senha = Integer.parseInt(strSenha);
         
         if(senha == 1234) {
+            JOptionPane.showMessageDialog(null, "Depósito realizado com sucesso.");
             String strSaldo = saldoUsuario.getText();
             String strValor = saqueValor.getText();
         
@@ -138,11 +150,15 @@ public class Saque extends javax.swing.JFrame {
             String saldoPrint = Integer.toString(novoSaldo);
             saldoUsuario.setText(saldoPrint);
         } else {
-            warning.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Erro na transação. Tente novamente.");
         }
 
         
     }//GEN-LAST:event_btnSaqueActionPerformed
+
+    private void saldoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saldoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saldoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

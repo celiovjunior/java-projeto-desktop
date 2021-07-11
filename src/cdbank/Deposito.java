@@ -5,6 +5,8 @@
  */
 package cdbank;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Casa
@@ -16,6 +18,9 @@ public class Deposito extends javax.swing.JFrame {
      */
     public Deposito() {
         initComponents();
+       
+        Utils u = new Utils();
+        u.insertImage(this);
     }
 
     /**
@@ -65,7 +70,7 @@ public class Deposito extends javax.swing.JFrame {
         });
 
         saldoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        saldoUsuario.setText("100");
+        saldoUsuario.setText("550");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,23 +78,19 @@ public class Deposito extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saldoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(senhaUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(depositoValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(35, 35, 35))
+                        .addComponent(saldoUsuario))
+                    .addComponent(senhaUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(depositoValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDeposito)
@@ -138,8 +139,9 @@ public class Deposito extends javax.swing.JFrame {
             int novoSaldo = saldo + depValor;
             String saldoPrint = Integer.toString(novoSaldo);
             saldoUsuario.setText(saldoPrint);
+            JOptionPane.showMessageDialog(null, "Depósito realizado com sucesso.");
         } else {
-            warning.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Erro na transação. Tente novamente");
         }
     }//GEN-LAST:event_btnDepositoActionPerformed
 

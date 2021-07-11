@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,8 @@ public class TelaUsuario extends javax.swing.JFrame {
      */
     public TelaUsuario() {
         initComponents();
+        Utils u = new Utils();
+        u.insertImage(this);
     }
 
     /**
@@ -75,7 +78,6 @@ public class TelaUsuario extends javax.swing.JFrame {
         });
 
         usuarioSaldo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        usuarioSaldo.setText("100");
         usuarioSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioSaldoActionPerformed(evt);
@@ -149,7 +151,23 @@ public class TelaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_trasferirDinheiroActionPerformed
 
     private void usuarioSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioSaldoActionPerformed
-
+            try {
+            // TODO add your handling code here
+            Connection conectando = ConexaoDb.conectar();
+            
+            String sql = "select saldo from usuario_cadastrado";
+            
+            PreparedStatement stmt = conectando.prepareStatement(sql);
+            
+            ResultSet resultado = stmt.executeQuery();
+            
+            
+            stmt.close();
+            conectando.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_usuarioSaldoActionPerformed
 
     /**
@@ -195,4 +213,8 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton trasferirDinheiro;
     private javax.swing.JTextField usuarioSaldo;
     // End of variables declaration//GEN-END:variables
+
+    void setPushPathFieldText(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

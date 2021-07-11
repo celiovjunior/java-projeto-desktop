@@ -20,6 +20,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
      */
     public CadastroUsuario() {
         initComponents();
+        Utils u = new Utils();
+        u.insertImage(this);
     }
 
     /**
@@ -249,7 +251,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         txtConta.setText(contaGer);
         txtSenha.setText(senhaGer);
         
-                try {
+            try {
             
             Connection conectando = ConexaoDb.conectar();
             
