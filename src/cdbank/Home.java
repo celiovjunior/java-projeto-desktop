@@ -24,6 +24,9 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        
+        Utils u = new Utils();
+        u.insertImage(this);
     }
 
     /**
@@ -141,11 +144,17 @@ public class Home extends javax.swing.JFrame {
             stmt.setString(2, usuarioSenha.getText());
             
             ResultSet resultado = stmt.executeQuery();
+
             
-            if(resultado.next()) {
+            if(resultado.next()){
+
+                System.out.println(resultado.getString("saldo"));
+                
+                
                 JOptionPane.showMessageDialog(null, "Seja Bem Vindo! Click em OK para continuar");
                 TelaUsuario user01 = new TelaUsuario();
                 user01.setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário não encontrado. Verifique as informações.");
                 usuarioConta.setText("");
@@ -226,4 +235,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField usuarioConta;
     private javax.swing.JPasswordField usuarioSenha;
     // End of variables declaration//GEN-END:variables
+
+
 }
